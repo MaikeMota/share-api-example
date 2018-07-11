@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Share API Example</title>
+</head>
+
+<body>
+    <a href='#' onclick="shareMe()"> Share Me </a>
+</body>
+
+<script>
+    function shareMe() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'Share API is Awesome!',
+                text: 'Check out Web Fundamentals — it rocks!',
+                url: 'https://developers.google.com/web',
+            })
+                .then(() => console.log('Successful share'))
+                .catch((error) => console.log('Error sharing', error));
+        }
+    }
+
+</script>
+
+</html>
