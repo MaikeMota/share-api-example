@@ -10,20 +10,26 @@
 
 <body>
     <a href='#' onclick="shareMe()"> Share Me </a>
+    <span hidden> Sorry, your browser do not support Share API =/ </span>
 </body>
 
 <script>
     function shareMe() {
-        if (navigator.share) {
-            navigator.share({
-                title: 'Share API is Awesome!',
-                text: 'Check out Web Fundamentals — it rocks!',
-                url: 'https://developers.google.com/web',
-            })
-                .then(() => console.log('Successful share'))
-                .catch((error) => console.log('Error sharing', error));
-        }
+        navigator.share({
+            title: 'Share API is Awesome!',
+            text: 'Check out Web Fundamentals — it rocks!',
+            url: 'https://developers.google.com/web',
+        })
+            .then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing', error));
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!navigator.share) {
+            document.getElementsByTagName('a')[0].setAttribute('hidden', 'hidden');
+            document.getElementsByTagName('span')[0].removeAttribute('hidden');
+        }
+    });
 
 </script>
 
